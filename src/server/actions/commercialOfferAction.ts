@@ -4,7 +4,7 @@ import "reflect-metadata";
 import LeadTable from "@/infrastructure/lead-table";
 import { container } from "tsyringe";
 import WithTimeout from "../../lib/with-timeout";
-// import EmailService from "@/server/email-service";
+import EmailService from "@/server/email-service";
 
 export type CommercialOfferFormData = {
   name: string;
@@ -24,7 +24,7 @@ export type CommercialOfferDto = {
 };
 
 const leadTable = container.resolve(LeadTable);
-// const emailService = container.resolve(EmailService);
+const emailService = container.resolve(EmailService);
 
 export default async function submitCommercialOfferAction(
   formData: CommercialOfferFormData,
@@ -36,11 +36,13 @@ export default async function submitCommercialOfferAction(
   };
 
   try {
-    // Отправляем данные в Google Таблицу
     await WithTimeout(500)(leadTable.addCommercialOffer(dto));
 
-    // Отправляем email уведомление
-    // await emailService.sendCommercialOfferEmail(dto);
+    try {
+      await WithTimeout(500)(emailService.sendCommercialOfferEmail(dto));
+    } catch (emailError) {
+      console.error("Failed to send email:", emailError);
+    }
 
     return {
       success: true,
