@@ -36,10 +36,10 @@ export default async function submitCommercialOfferAction(
   };
 
   try {
-    await WithTimeout(500)(leadTable.addCommercialOffer(dto));
+    await WithTimeout(10000)(leadTable.addCommercialOffer(dto));
 
     try {
-      await WithTimeout(500)(emailService.sendCommercialOfferEmail(dto));
+      await WithTimeout(10000)(emailService.sendCommercialOfferEmail(dto));
     } catch (emailError) {
       console.error("Failed to send email:", emailError);
     }
