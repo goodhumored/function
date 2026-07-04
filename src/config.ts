@@ -4,7 +4,7 @@ dotenv.config();
 
 export default function getConfig() {
   return {
-    baseUrl: "https://www.functiondesign.studio",
+    baseUrl: "https://functiondesign.studio",
     strapi: {
       baseUrl: process.env["STRAPI_BASE_URL"] ?? "http://localhost:1337",
       publicUrl:
