@@ -4,7 +4,7 @@ import formatPhoneNumber from "@/lib/phone-format";
 import { InputField } from "../input-field";
 import { useEffect, useRef, useState } from "react";
 import useToast from "../use-toast";
-import submitCommercialOfferAction, { CommercialOfferFormData } from "@/server/actions/commercialOfferAction";
+import submitCommercialOffer, { CommercialOfferFormData } from "@/lib/submit-commercial-offer";
 import { cn } from "@/lib/utils";
 
 export default function FooterForm({ className }: { className?: string }) {
@@ -47,7 +47,7 @@ export default function FooterForm({ className }: { className?: string }) {
     try {
       const formData = new FormData(formRef.current);
       setSent(true);
-      const result = await submitCommercialOfferAction(Object.fromEntries(formData.entries()) as unknown as CommercialOfferFormData);
+      const result = await submitCommercialOffer(Object.fromEntries(formData.entries()) as unknown as CommercialOfferFormData);
       showToast(result.message, !result.success);
       if (result.success) {
         setName("");

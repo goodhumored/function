@@ -7,9 +7,9 @@ import SubmitForm from "./submit-form";
 import { IFormViewModel } from "@/domain/form-view-model.interface";
 import { useThemeColors } from "@/components/common/use-theme-colors";
 import formatPhoneNumber from "@/lib/phone-format";
-import submitCommercialOfferAction, {
+import submitCommercialOffer, {
   CommercialOfferFormData,
-} from "@/server/actions/commercialOfferAction";
+} from "@/lib/submit-commercial-offer";
 import useToast from "@/components/common/use-toast";
 
 export default function CommercialOfferForm({
@@ -110,7 +110,7 @@ export default function CommercialOfferForm({
       const formData = Object.fromEntries(
         new FormData(formRef.current).entries()
       ) as unknown as CommercialOfferFormData;
-      const result = await submitCommercialOfferAction(formData);
+      const result = await submitCommercialOffer(formData);
 
       showToast(result.message, !result.success);
       if (result.success) {
