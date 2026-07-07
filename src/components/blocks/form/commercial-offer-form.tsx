@@ -206,6 +206,7 @@ export default function CommercialOfferForm({
             <div className="flex flex-col justify-start items-stretch">
               {/* Spacer between containers */}
               <div>
+                <input type="hidden" name="source" value={"header"} />
                 <InputField
                   name="name"
                   value={name}

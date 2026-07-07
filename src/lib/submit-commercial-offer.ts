@@ -21,7 +21,7 @@ export default async function submitCommercialOffer(
       email: formData.email,
       brandingType: formData.brandingType ?? formData.branding ?? "",
       services: formData.services,
-      source: formData.source ?? "website",
+      source: formData.source ?? "",
       page: formData.page ?? document.location.pathname,
     };
 
