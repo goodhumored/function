@@ -9,8 +9,7 @@ export type CommercialOfferFormData = {
   page?: string;
 };
 
-const GOOGLE_SCRIPT_URL =
-  process.env["NEXT_PUBLIC_GOOGLE_SCRIPT_URL"] ?? "";
+const GOOGLE_SCRIPT_URL = process.env["NEXT_PUBLIC_GOOGLE_SCRIPT_URL"] ?? "";
 
 export default async function submitCommercialOffer(
   formData: CommercialOfferFormData,
@@ -23,7 +22,7 @@ export default async function submitCommercialOffer(
       brandingType: formData.brandingType ?? formData.branding ?? "",
       services: formData.services,
       source: formData.source ?? "website",
-      page: formData.page ?? "",
+      page: formData.page ?? document.location.pathname,
     };
 
     const response = await fetch(GOOGLE_SCRIPT_URL, {
