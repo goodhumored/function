@@ -158,6 +158,13 @@ export default function CommercialOfferForm({
           className="grow-1 max-w-[30.3125rem] flex-col sm:pt-1.25 pt-7.5"
           action={() => { }}
         >
+          <input
+            type="text"
+            name="honeypot"
+            tabIndex={-1}
+            autoComplete="off"
+            style={{ display: "none" }}
+          />
           <div>
             <h3
               className={cn(

@@ -73,6 +73,13 @@ export default function FooterForm({ className }: { className?: string }) {
         (<Form noValidate ref={formRef} action={() => { }} >
           <div className="xs:pr-[20%] md:pr-0 pr-0">
             <input type="hidden" name="source" value={"footer"} />
+            <input
+              type="text"
+              name="honeypot"
+              tabIndex={-1}
+              autoComplete="off"
+              style={{ display: "none" }}
+            />
             {/* Name */}
             <InputField
               value={name}
