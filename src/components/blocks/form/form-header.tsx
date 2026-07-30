@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { useThemeColors } from "@/components/common/use-theme-colors";
+import { usePathname } from "next/navigation";
 
 interface FormHeaderProps {
   onClose?: (() => void) | undefined;
@@ -12,12 +13,18 @@ interface FormHeaderProps {
 
 export default function FormHeader({ onClose, className }: FormHeaderProps) {
   const colors = useThemeColors();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <div
       className={cn("flex flex-row justify-between items-stretch", className)}
     >
-      <Link href="/#home" className="flex-shrink-0 flex items-center group">
+      <Link
+        href="/#home"
+        className="flex-shrink-0 flex items-center group"
+        {...(isHome && onClose ? { onClick: () => onClose() } : {})}
+      >
         <FunctionLogo
           className={cn(
             "origin-left xs:scale-100 scale-119 group-hover:fill-[#FF3F1A] transition-colors ease-in-out duration-300",
